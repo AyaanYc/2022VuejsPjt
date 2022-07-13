@@ -45,13 +45,40 @@
       <p v-bind:hidden="textValue1||textValue2 !== ''">비밀번호를 입력해주세요</p>
       <p v-bind:hidden="textValue1 === textValue2">비밀번호가 일치하지 않습니다.</p>
     </div>
+    <div>
+      <h3>p.107</h3>
+      <div class="container" v-bind:class="{'active': isActive, 'text-red': hasError}">
+        Class Binding
+      </div>
+      <input type="checkbox" v-model="isActive">
+      <input type="checkbox" v-model="hasError">
+      <div class="container" v-bind:class="clsArr">
+        Class Binding
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h3> p.110 </h3>
+      <div :style="styleObj">인라인 스타일 바인딩</div>
+    </div>
   </div>
 </template>
-
+<style>
+  .container { width: 100%; height: 200px; }
+  .active { background-color: yellow; font-weight: bold; }
+  .text-red { color: red; }
+</style>
 <script>
 export default {
   data() {
     return {
+      styleObj: {
+        color: 'red',
+        fontSize: '16px' // font-size
+      },
+      clsArr: ['active', 'text-red'],
+      isActive: true,
+      hasError: true,
       numberModel: 3,
       gender: '0',
       htmlString: '<p style="color:red">This is a red string</p>',
