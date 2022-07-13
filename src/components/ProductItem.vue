@@ -20,7 +20,7 @@ export default {
             return this.numberComma(this.item.delivery_price);
         },
         getPinalPrice() {
-            return this.numberComma(this.item.price * this.item.quantity);
+            return this.numberComma(this.item.price * this.item.quantity + this.item.delivery_price);
         }
     },
     methods: {
