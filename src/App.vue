@@ -5,7 +5,8 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/intro">Intro</router-link> |
     <router-link to="/databindinglist">DataBinding</router-link> |
-    <router-link to="/rendering">Rendering</router-link> 
+    <router-link to="/rendering">Rendering</router-link> |
+    <router-link to="/eventclick">EventClick</router-link> 
 
   </nav>
   <router-view/>

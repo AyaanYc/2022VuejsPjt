@@ -16,10 +16,10 @@
             <tr v-for="(item, idx) in productList" :key="idx">
                 <td>{{ item.product_name}}</td>
                 <td>{{ item.price}}</td>
-                <td>{{ item.quantity}} <input @click=item.quantity+1 type="button" value='+'><input type="button" value='-'></td>
+                <td><input v-model="productList[idx].quantity" @click="changeBt" type="number"></td>
                 <td>{{ item.category}}</td>
                 <td>{{ item.delivery_price}}</td>
-                <td>{{ item.price * item.quantity}}</td>
+                <td>{{ item.price * item.quantity + item.delivery_price}}</td>
             </tr>
         </tbody>
     </table>
@@ -55,9 +55,10 @@ export default {
         numberComma(num) {
             return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         },
-        changeBt() {
-            this.value + 1;
+         changeBt() {
+           this.value++;
         }
+
     },  
     data() {
         return {
@@ -90,8 +91,11 @@ export default {
                     category: '노트북/태블릿',
                     delivery_price: 4000
                 },
-            ]
+            ],
+            quantity: 0
         }
+    },
+    computed: {
     }
 }
 </script>
