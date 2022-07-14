@@ -53,7 +53,6 @@ export default {
       const data = await this.getBoxOfficeByWeek(targetDt, cd, title);
       this.list = data.boxOfficeResult.weeklyBoxOfficeList;
       this.yearWeekTime = data.boxOfficeResult.yearWeekTime;
-      const time = this.yearWeekTime.replace(/\d{4}\/\d{2}/);
       console.log(data);
     }
   }
