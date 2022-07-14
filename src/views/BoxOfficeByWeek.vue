@@ -3,45 +3,38 @@
     <h1>boxOfficeByWeek</h1>
     <div>
       <input type="date" v-model="selectedDate">
-      <button @click="search">검색</button>
       <select v-model="cd">
         <option value="">전체</option>
         <option value="K">국내</option>
         <option value="F">해외</option>
       </select>
-      연도/주차 : {{ yearWeekTime }}
+    <select v-model="title">
+        <option value=2>주중</option>
+        <option value=1>주간</option>
+        <option value=0>주말</option>
+      </select>
+      연도/주차 : {{ yearWeekTime.slice(0, 4) + '/' +  yearWeekTime.slice(4)}}
+      <button @click="search">검색</button>
     </div>
-    <table >
-      <thead>
-        <tr>
-          <th>순위</th>
-          <th>제목</th>
-          <th>개봉일</th>
-          <th>누적관객수</th>
-          <th>누적매출액</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item) in list" :key="item.movieCd">
-          <td>{{ item.rank }}</td>
-          <td>{{ item.movieNm }}</td>
-          <td>{{ item.openDt }}</td>
-          <td>{{ numberComma(item.audiAcc) }}</td>
-          <td>{{ numberComma(item.salesAcc) }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <rank-table :list="list"/>
   </div>
 </template>
 
 <script>
+import RankTable from "../components/boxOffice/RankTable.vue";
+
 export default {
+  components: {
+    RankTable
+  },
+
   data() {
     return {
       selectedDate: '',
       list: [],
       cd: '',
-      yearWeekTime: ''
+      yearWeekTime: '',
+      title: 0
     }
   },
   created() {
@@ -54,12 +47,13 @@ export default {
   methods: {
     search() {
       const targetDt = this.selectedDate.replaceAll('-', '');
-      this.getData(targetDt, this.cd);
+      this.getData(targetDt, this.cd, this.title);
     },
-    async getData(targetDt, cd) {
-      const data = await this.getBoxOfficeByWeek(targetDt, cd);
+    async getData(targetDt, cd, title) {
+      const data = await this.getBoxOfficeByWeek(targetDt, cd, title);
       this.list = data.boxOfficeResult.weeklyBoxOfficeList;
       this.yearWeekTime = data.boxOfficeResult.yearWeekTime;
+      const time = this.yearWeekTime.replace(/\d{4}\/\d{2}/);
       console.log(data);
     }
   }

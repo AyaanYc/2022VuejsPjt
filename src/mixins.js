@@ -27,11 +27,11 @@ export default {
             const url = this.baseUrl + this.boxOfficeByDay;
             return await this.$api(url, parameter);
         },
-        async getBoxOfficeByWeek(targetDt, cd) {
+        async getBoxOfficeByWeek(targetDt, cd, title) {
             const parameter = {
                 key: this.key,                
                 targetDt,
-                weekGb: 0,
+                weekGb: title,
                 repNationCd: cd
             }
             const url = this.baseUrl + this.boxOfficeByWeek;

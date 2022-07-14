@@ -56,4 +56,6 @@ td, th {
   align-items: center;
   flex-direction: column;
 }
+
+.align-right { text-align: right; }
 </style>
