@@ -4,6 +4,11 @@
     <div>
       <input type="date" v-model="selectedDate">
       <button @click="search">검색</button>
+      <select v-model="cd">
+        <option value="">전체</option>
+        <option value="K">국내</option>
+        <option value="F">해외</option>
+      </select>
     </div>
     <table >
       <thead>
@@ -33,7 +38,8 @@ export default {
   data() {
     return {
       selectedDate: '',
-      list: []
+      list: [],
+      cd: ''
     }
   },
   created() {
@@ -46,10 +52,11 @@ export default {
   methods: {
     search() {
       const targetDt = this.selectedDate.replaceAll('-', '');
-      this.getData(targetDt);
+      const cd = this.cd;
+      this.getData(targetDt, cd);
     },
-    async getData(targetDt) {
-      const data = await this.getBoxOfficeByDay(targetDt);
+    async getData(targetDt, cd) {
+      const data = await this.getBoxOfficeByDay(targetDt, cd);
       this.list = data.boxOfficeResult.dailyBoxOfficeList;
       console.log(data);
     }

@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            key: '1a0a7ecf96ad3364d8de70e91560767a',
+            key: '60963831bbadff4aa469549e33d94012',
             baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
             boxOfficeByDay: 'boxoffice/searchDailyBoxOfficeList.json',
             boxOfficeByWeek: 'boxoffice/searchWeeklyBoxOfficeList.json'
@@ -18,19 +18,21 @@ export default {
                 console.log(e);
             })).data;
         },
-        async getBoxOfficeByDay(targetDt) {
+        async getBoxOfficeByDay(targetDt,cd) {
             const parameter = {
                 key: this.key,                
-                targetDt
+                targetDt,
+                repNationCd: cd
             }
             const url = this.baseUrl + this.boxOfficeByDay;
             return await this.$api(url, parameter);
         },
-        async getBoxOfficeByWeek(targetDt) {
+        async getBoxOfficeByWeek(targetDt, cd) {
             const parameter = {
                 key: this.key,                
                 targetDt,
-                weekGb: 0
+                weekGb: 0,
+                repNationCd: cd
             }
             const url = this.baseUrl + this.boxOfficeByWeek;
             return await this.$api(url, parameter);

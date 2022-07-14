@@ -4,6 +4,12 @@
     <div>
       <input type="date" v-model="selectedDate">
       <button @click="search">검색</button>
+      <select v-model="cd">
+        <option value="">전체</option>
+        <option value="K">국내</option>
+        <option value="F">해외</option>
+      </select>
+      연도/주차 : {{ yearWeekTime }}
     </div>
     <table >
       <thead>
@@ -33,7 +39,9 @@ export default {
   data() {
     return {
       selectedDate: '',
-      list: []
+      list: [],
+      cd: '',
+      yearWeekTime: ''
     }
   },
   created() {
@@ -46,11 +54,12 @@ export default {
   methods: {
     search() {
       const targetDt = this.selectedDate.replaceAll('-', '');
-      this.getData(targetDt);
+      this.getData(targetDt, this.cd);
     },
-    async getData(targetDt) {
-      const data = await this.getBoxOfficeByWeek(targetDt);
+    async getData(targetDt, cd) {
+      const data = await this.getBoxOfficeByWeek(targetDt, cd);
       this.list = data.boxOfficeResult.weeklyBoxOfficeList;
+      this.yearWeekTime = data.boxOfficeResult.yearWeekTime;
       console.log(data);
     }
   }
