@@ -6,7 +6,7 @@
         <td  class="align-right">{{ commasalesAcc }}</td>
         <td  class="align-right">{{ commaAudiAcc }}</td>
     </tr>
-    <AlertModal :show="modalShow" header="알림창" :body="infoModal.textContent" @close="hiddenModal"></AlertModal>
+    <AlertModal :show="modalShow" header="알림창" :body="infoModal.innerHTML" @close="hiddenModal"></AlertModal>
 </template>
 
 <script>

@@ -18,7 +18,7 @@ export default {
             <slot name="header">{{ header }}</slot>
           </div>
           <div class="modal-body">
-            <slot name="body">{{ body }}</slot>
+            <slot name="body"><span v-html="body"></span></slot>
           </div>
           <div class="modal-footer">
             <slot name="footer">
