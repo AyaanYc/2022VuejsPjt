@@ -17,11 +17,9 @@ export default {
           <div class="modal-header">
             <slot name="header">{{ header }}</slot>
           </div>
-
           <div class="modal-body">
             <slot name="body">{{ body }}</slot>
           </div>
-
           <div class="modal-footer">
             <slot name="footer">
               <button
