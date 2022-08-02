@@ -53,10 +53,10 @@ export default {
             const modalcnt = document.createElement('div');
             modalcnt.innerHTML = `
             <ul>
-            <li> ${this.info.movieNm} </li>
-            <li> ${this.info.showTm} </li>
-            <li> ${this.info.openDt} </li>
-            <li> ${this.info.typeNm} </li>
+            <li>영화이름: ${this.info.movieNm} </li>
+            <li>상영시간: ${this.info.showTm} </li>
+            <li>개봉일: ${this.info.openDt} </li>
+            <li>장르: ${this.info.typeNm} </li>
             </ul>
             `;
             return modalcnt;
