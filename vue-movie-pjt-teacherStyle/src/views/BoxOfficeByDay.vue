@@ -36,6 +36,7 @@ export default {
     const d = new Date();
     d.setDate(d.getDate() - 1);
     this.selectedDate = this.getOnlyDateStr(d);
+    this.search();
   }
 }
 </script>
